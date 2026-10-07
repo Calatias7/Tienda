@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#145a87">
+<title>Cuaderno de la Tienda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <div class="brand"><span class="q">Q</span><h1>Cuaderno de la Tienda</h1></div>
+    <div class="sync" id="sync" data-s="loading" role="status"><i></i><span>Conectando…</span></div>
+    <button class="btn ghost sm" id="btnRespaldo">Respaldo</button>
+    <nav class="nav" id="nav" aria-label="Secciones">
+      <button data-v="vender" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20.5" r="1.2"/><circle cx="17" cy="20.5" r="1.2"/></svg>Vender</button>
+      <button data-v="inv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>Inventario<span class="dot" id="dotInv" hidden></span></button>
+      <button data-v="fiado"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h12a2 2 0 0 1 2 2v14l-3-2-3 2-3-2-3 2V6a2 2 0 0 1 2-2z" transform="translate(1 0)"/><path d="M9 9h6M9 13h4"/></svg>Fiado</button>
+      <button data-v="resumen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Resumen</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section id="v-vender" class="view">
+    <div class="sell">
+      <div class="sell-main">
+        <input id="buscar" type="search" placeholder="Buscar producto…" autocomplete="off" aria-label="Buscar producto">
+        <div id="prodGrid" class="pgrid"></div>
+      </div>
+      <aside id="cart" class="cart" aria-label="Venta actual"></aside>
+    </div>
+  </section>
+
+  <section id="v-inv" class="view" hidden>
+    <div class="sec-h"><h2>Inventario</h2><button class="btn pri" id="btnNuevoProd">+ Nuevo producto</button></div>
+    <div id="alerts" class="alerts"></div>
+    <div class="row" style="margin-bottom:10px"><input id="buscarInv" type="search" placeholder="Buscar en el inventario…" aria-label="Buscar en el inventario" style="max-width:360px"></div>
+    <div id="invTable"></div>
+  </section>
+
+  <section id="v-fiado" class="view" hidden>
+    <div class="sec-h"><h2>Fiado</h2><button class="btn pri" id="btnNuevoCli">+ Nuevo cliente</button></div>
+    <div id="fiadoBody"></div>
+  </section>
+
+  <section id="v-resumen" class="view" hidden>
+    <div class="sec-h">
+      <h2>Resumen</h2>
+      <div class="seg" role="group" aria-label="Periodo"><button id="segSem" aria-pressed="true">Semana</button><button id="segMes" aria-pressed="false">Mes</button></div>
+      <div class="period"><button class="btn sm" id="perPrev" aria-label="Periodo anterior">‹</button><b id="perLbl"></b><button class="btn sm" id="perNext" aria-label="Periodo siguiente">›</button></div>
+    </div>
+    <div id="resBody"></div>
+  </section>
+</main>
+
+<div id="sheetRoot"></div>
+<div id="toast" class="toast" hidden role="status"></div>
+
+<script src="{{ url_for('static', filename='js/api.js') }}"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

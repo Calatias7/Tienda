@@ -1,2 +1,11 @@
-# Copias de seguridad con datos de la tienda
+# Base de datos y copias de seguridad con datos de la tienda
+datos/
+*.db
+*.db-wal
+*.db-shm
 cuaderno-tienda-*.json
+
+# Python
+.venv/
+__pycache__/
+*.pyc
